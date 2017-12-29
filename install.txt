@@ -1,0 +1,160 @@
+
+
+
+ssh-keygen
+
+/*
+NO PASSPHRASE
+
+The key fingerprint is:
+SHA256:98UKhsMDBi26lZlMoM0YzeV3RjwE4XNZL2eiU0aj6VM relim@P-NAN-COPENHAGUE-relim
+The key's randomart image is:
++---[RSA 2048]----+
+|.o.oo.o=o +      |
+| *o.oo..o* o     |
+|o o+.=* B.E +    |
+|  . *o O * = .   |
+|   o    S +   o  |
+|  .      B o o   |
+|            o    |
+|                 |
+|                 |
++----[SHA256]-----+
+*/
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub lion
+
+uploadsshkey -u relim -k ~/.ssh/id_rsa.pub
+# passphrase: latitude
+ssh-add
+
+sudo apt-get update
+# Apparament il manque ce packet... Alors je l'install.
+sudo apt-get install apt-transport-https
+sudo apt-get update
+
+# See also: 
+# https://git.smile.fr/drupal/drupal8-architecture-skeleton/blob/master/architecture/docs/prerequisites.md
+
+sudo apt-get install htop
+sudo apt-get install tree
+sudo apt-get install gimp
+sudo apt-get install subversion
+sudo apt-get install git
+sudo apt-get install gitg
+sudo apt-get install pidgin
+sudo apt-get install vim
+sudo apt-get install ansible
+sudo apt-get install python-ldap
+sudo apt-get install i3
+sudo apt-get install rofi
+sudo apt-get install fonts-font-awesome
+# Gestionnaire de fichier
+sudo apt-get install thunar
+sudo apt-get install lxappearance
+# Lancer lxappearance pour tunner thunar
+# Playerctl is a command-line utility for controlling media players over DBus that works with most players.
+sudo apt-get install playerctl
+# Gestion de la luminosité
+sudo apt-get install xbacklight
+# Gérer les écrans
+sudo apt-get install arandr
+# Pour simplifier la gestion de [Ver Num]
+sudo apt-get install numlockx
+
+
+# Installation composer
+sudo apt-get install php-zip php-mbstring php-curl php-dom
+# https://getcomposer.org/download/
+# Satis repositories 
+# https://wiki.smile.fr/view/PHP/HowToConfigComposer
+# J'ai mis ma conf dans ~/.config/composer/composer.json
+# Et un lien symobique pour ~/.composer/config.json
+#
+# Rendre composer exécutable
+sudo mv composer.phar /usr/bin/composer
+sudo chmod 755 /usr/bin/composer
+sudo chown root:root /usr/bin/composer
+
+
+
+# Reinstallation ansible
+# https://wiki.smile.fr/view/Systeme/AnsibleIntro
+sudo apt-get purge ansible # Make sure previous versions are removed
+sudo apt-get install python-crypto python-httplib2 python-jinja2 python-paramiko python-pkg-resources python-yaml python-pip
+sudo pip install ansible==2.1.1.0
+
+# Polybar
+wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu xenial-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+sudo apt-get update
+sudo apt-get install polybar
+
+# Installation de phpstorm
+# dans ~/Softs/PhpStorm/PhpStorm-145.1616.3
+# * https://wiki.smile.fr/view/PHP/PhpStorm
+# * https://www.jetbrains.com/phpstorm/download/#section=linux
+sudo ln -s ~/Softs/PhpStorm/PhpStorm-145.1616.3/bin/phpstorm.sh /usr/bin/phpstorm
+phpstorm
+pstorm
+
+# Installation de google Chrome à partir du .deb
+# https://doc.ubuntu-fr.org/google_chrome
+# https://www.google.fr/chrome/browser/desktop/index.html
+
+# Slack
+# .deb
+# https://slack.com/intl/fr-fr/downloads/linux
+
+# visualstudio Code
+# .deb
+# https://code.visualstudio.com/download
+sudo dpkg -i Téléchargements/code_1.17.0-1507160143_amd64.deb 	
+sudo apt-get install -f
+
+
+# Installation LXC
+# https://wiki.smile.fr/view/Dirtech/LxcForDevs
+sudo mkdir /home/lxc 
+sudo ln -s /home/lxc /lxc
+sudo apt-get install smile-lxc
+# C'est pas spécifié dans la doc mais à la fin de l'installation de smila-lxc
+service apache2 restart
+
+sudo mkdir /lxc/templates
+sudo chmod 777 /lxc/templates
+
+
+.bashrc
+
+export PS1="\[\033[38;5;27m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;178m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:[\[$(tput sgr0)\]\[\033[38;5;2m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$ \[$(tput sgr0)\]"
+
+
+.bash_aliases
+
+alias azerty="setxkbmap fr"
+https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo '
+function cdl { cd $1; ls;}
+
+
+sudo apt-get install gem -y
+sudo apt-get install rubygems -y
+
+# Cette ligne est bizard !
+# sudo su -c "gem install sass"
+sudo gem install sass
+
+sudo apt-get install nodejs npm -y
+sudo npm install -g less
+sudo ln -s /usr/bin/nodejs /usr/local/bin/node
+sudo ln -s /usr/bin/npm /usr/local/bin/npm
+
+# Gérer le sond
+sudo apt-get install pavucontrol
+
+# Virtualbox
+sudo apt-get install virtualbox virtualbox-dkms linux-headers-generic linux-headers-$(uname -r)
+# Reboot
+sudo dpkg-reconfigure virtualbox-dkms
+sudo dpkg-reconfigure virtualbox
