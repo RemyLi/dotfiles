@@ -1,0 +1,334 @@
+bindsym $mod+w exec "bash -c 'f(){ i3-msg exec urxvt,exec urxvt; sleep 0.2; i3-msg focus parent,focus left,focus child,split v,exec urxvt; sleep 0.2; i3-msg focus parent,focus left,focus child,split v,exec urxvt; }; f;'" 
+
+set $term tilix
+
+#Removes black screen after inactivity
+#Use xet -q to check status
+exec_always xset -dpms
+exec_always xset s noblank
+exec_always xset s off
+
+
+bindsym $mod+BackSpace exec ~/.config/scripts/flash_win.sh
+
+#bindsym Print exec scrot -e  'mv $f /tmp/ && gimp /tmp/$f'
+bindsym Print exec scrot -e 'mv $f /tmp/'
+# scrot & gimp - select window or rectangle
+bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/'
+#bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
+
+
+set $mod Mod4
+
+gaps inner 5
+gaps outer 3
+
+#Lock screen
+bindsym Mod1+Ctrl+l exec  ~/.config/scripts/lock.sh
+
+#Gnome settings
+#exec_always gnome-settings-daemon
+exec gnome-settings-daemon
+exec gsettings set org.gnome.desktop.peripherals.touchpad  scroll-method 'edge-scrolling'
+#vertical scroll
+#exec_always synclient VertEdgeScroll=1 
+
+#wallpaper
+exec_always python ~/.config/scripts/wallpaper.py
+
+bindsym $mod+Shift+Home exec feh --bg-scale ~/Pictures/archlinux.jpg
+#random wallpaper
+#bindsym $mod+Home exec feh --randomize --bg-scale ~/Pictures/wallpapers-master/my/*
+bindsym $mod+Home exec python ~/.config/scripts/wallpaper.py
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:Sans 5 
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font xft:Sans 5
+
+# Before i3 v4.8, we used to recommend this one as the default:
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Stop and pause everyting
+#bindsym Mod1+Ctrl+Delete exec amixer -D pulse set Master 0;workspace 11;focus parent,kill;exec urxvt  -e cmatrix;split v;exec urxvt -e ranger;exec urxvt -e htop
+
+
+bindsym $mod+Shift+i		resize shrink width 10 px or 10ppt
+bindsym $mod+Shift+y		resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+o		resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+u		resize grow width 10 px or 10 ppt
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec $term 
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100  -opacity "85" -bw 0  -font "monaco 18"
+#bindsym $mod+d exec rofi -show run -fg "#f1f1f1" -bg "#333333" -hlfg "#ffffff" -hlbg "#336699" -o 85
+#bindsym $mod+d exec rofi -show run -width 2560 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "MonacoB 16" -padding 300 -separator-style none -opacity 80
+bindsym $mod+d exec rofi -show run ~/.config/rofi/config 
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+
+
+
+bindsym $mod+Shift+d gaps inner current set 5; gaps outer current set 3 
+bindsym $mod+g gaps inner current plus 5
+bindsym $mod+Shift+g gaps inner current minus 5
+
+bindsym $mod+z			gaps outer current plus 5
+bindsym $mod+Shift+z		gaps outer current minus 5
+
+
+
+#set $ws1 "1: &#xf120; terminal"
+#set $ws2 "2: &#xf269; firefox"
+#set $ws3 "3: &#xf1c8; vlc" 
+#set $ws4 "4: &#xf0e0; mail"
+#set $ws5 "5: &#xf07b; files" 
+#set $ws6 "6: Music"
+# switch to workspace
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3 
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+#        font xft:monaco, FontAwesome 10
+#        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#        tray_output primary
+#}
+
+#polybar
+bar {
+    i3bar_command $HOME/.config/polybar/launch.sh
+}
+  
+#i3lock shortcut
+bindsym $mod+shift+x exec i3lock 
+
+
+#assign [class="Firefox"] $ws2
+#assign [class="vlc"] $ws3
+#assign [class="Nylas Mail"] $ws4
+#assign [class="Thunar"] $ws5
+#assign [class="google-play-music-nativefier-d66634"] $ws6
+exec_always compton -f --config ~/.config/compton/compton.conf
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec ~/.config/touchpad/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+for_window [class="^.*"] border pixel 2
+smart_borders on
+new_window 1pixel
+
+set $volInc amixer -D pulse set Master 5%+
+set $volDec amixer -D pulse set Master 5%-
+set $mute amixer -D pulse set Master 1+ toggle
+set $micromute amixer -D pulse set Capture nocap
+set $microunmute amixer -D pulse set Capture cap
+set $microtoggle amixer -D pulse set Capture toggle
+#bindsym $mod+XF86AudioLowerVolume exec amixer -c 1 -- sset Master playback 5%-
+#bindsym $mod+XF86AudioRaiseVolume exec amixer -c 1 -- sset Master playback 5%+
+#bindsym $mod+XF86AudioMute exec amixer -D pulse set Master 1+ toggle 
+bindsym $mod+XF86AudioMute exec $mute
+bindsym $mod+XF86AudioLowerVolume exec $volDec
+bindsym $mod+XF86AudioRaiseVolume exec $volInc
+bindsym XF86AudioMicMute exec $microtoggle
+
+#mpd & ncmpcpp config
+exec --no-startup-id mpd
+bindsym $mod+Ctrl+s exec mpc stop
+bindsym $mod+Ctrl+Return exec  mpc play
+#bindsym $mod+Ctrl+p exec urxvt -e mpc pause
+bindsym $mod+Ctrl+p exec mpc toggle
+bindsym $mod+Ctrl+k exec mpc next
+bindsym $mod+Ctrl+j exec mpc prev
+#bindsym $mod+Ctrl+m exec urxvt -e ncmpcpp
+
+#for_window [instance="__scratchpad"] move scratchpad  
+#exec_always --no-startup-id urxvt  -name __scratchpad
+#bindsym $mod+Ctrl+z [instance="__scratchpad"] scratchpad show
+
+#for_window [instance="scratchpad_full"] move scratchpad
+#exec_always --no-startup-id urxvt -name scratchpad_full
+#bindsym Mod1+Ctrl+z [instance="scratchpad_full"] scratchpad show,fullscreen enable
+
+
+for_window [class="URxvt" instance="floating"] floating enable border pixel 3
+for_window [class="URxvt" instance="fullscreenMode"] fullscreen enable 
+
+bindsym $mod+Ctrl+l exec urxvt -name floating -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt 
+#bindsym $mod+Shift+Return exec urxvt -name fullscreenMode  
+
+
+bindsym $mod+Ctrl+f exec xterm -e ranger
+bindsym $mod+Ctrl+d exec pcmanfm
+
+#bindsym $mod+Ctrl+n exec urxvt -name floating -e vim ~/Desktop/documents/things-to-do
+
+exec i3-msg workspace 1
+exec --no-startup-id ~/.config/scripts/blurme -t 0.0000000001 &
+
+
+#exec_always killall nm-applet
+#exec_always sleep 2
+exec_always --no-startup-id nm-applet
+
+# Connecter moniteur extérieur bureau
+# on
+bindsym $mod+n exec xrandr --output HDMI1 --auto --right-of eDP1
+# off
+bindsym $mod+Shift+n exec xrandr --output HDMI1 --off
+# Attribution des workspace aux moniteurs
+workspace $ws1 output eDP1
+workspace $ws2 output eDP1
+workspace $ws3 output eDP1
+workspace $ws4 output eDP1
+workspace $ws5 output HDMI1
+workspace $ws6 output HDMI1
+workspace $ws7 output HDMI1
+workspace $ws8 output HDMI1

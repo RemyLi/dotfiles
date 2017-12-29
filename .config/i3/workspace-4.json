@@ -1,0 +1,89 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 984,
+       "width": 1076,
+       "x": 0,
+       "y": 0
+    },
+    "name": "Courrier entrant - Mozilla Thunderbird",
+    "percent": 0.689636752136752,
+    "swallows": [
+       {
+        "class": "^Thunderbird$",
+        "instance": "^Mail$",
+       // "title": "^Courrier\\ entrant\\ \\-\\ Mozilla\\ Thunderbird$",
+       // "transient_for": "^$",
+        "window_role": "^3pane$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // splith split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "percent": 0.310363247863248,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1868,
+               "width": 1076,
+               "x": 0,
+               "y": 29
+            },
+            "name": "Liste de contacts",
+            "percent": 0.369444444444444,
+            "swallows": [
+               {
+                   // xprop
+                   // WM_WINDOW_ROLE(STRING) = "buddy_list"
+                   //  =window_role
+                   // WM_CLASS(STRING) = "Pidgin", "Pidgin"
+                   //                   =instance  =class
+                   // _NET_WM_NAME(UTF8_STRING) = "Liste de contacts"
+                   //  =title
+                "class": "^Pidgin$",
+                "instance": "^Pidgin$",
+                "title": "^Liste\\ de\\ contacts$",
+               // "transient_for": "^$",
+                "window_role": "^buddy_list$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 620,
+               "width": 1076,
+               "x": 0,
+               "y": 0
+            },
+            "name": "Abdel MADOURI",
+            "percent": 0.630555555555556,
+            "swallows": [
+               {
+                "class": "^Pidgin$",
+                "instance": "^Pidgin$",
+               // "title": "^Abdel\\ MADOURI$",
+               // "transient_for": "^$",
+                "window_role": "^conversation$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
