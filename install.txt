@@ -3,29 +3,9 @@
 
 ssh-keygen
 
-/*
-NO PASSPHRASE
-
-The key fingerprint is:
-SHA256:98UKhsMDBi26lZlMoM0YzeV3RjwE4XNZL2eiU0aj6VM relim@P-NAN-COPENHAGUE-relim
-The key's randomart image is:
-+---[RSA 2048]----+
-|.o.oo.o=o +      |
-| *o.oo..o* o     |
-|o o+.=* B.E +    |
-|  . *o O * = .   |
-|   o    S +   o  |
-|  .      B o o   |
-|            o    |
-|                 |
-|                 |
-+----[SHA256]-----+
-*/
-
 ssh-copy-id -i ~/.ssh/id_rsa.pub lion
 
 uploadsshkey -u relim -k ~/.ssh/id_rsa.pub
-# passphrase: latitude
 ssh-add
 
 sudo apt-get update
