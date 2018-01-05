@@ -33,6 +33,7 @@ sudo apt-get install fonts-font-awesome
 sudo apt-get install thunar
 sudo apt-get install lxappearance
 # Lancer lxappearance pour tunner thunar
+# https://faq.i3wm.org/question/1/how-can-i-get-rid-of-the-nautilus-desktop-window.1.html
 # Playerctl is a command-line utility for controlling media players over DBus that works with most players.
 sudo apt-get install playerctl
 # Gestion de la luminosité
